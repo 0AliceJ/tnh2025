@@ -24,4 +24,9 @@ app.get("/quotes", (req, res) => {
     });
 });
 
+//filepath: /workspaces/tnh2025/server.js
+app.get("/test", (req, res) => {
+    res.json({message: "Test route works!"});
+});
+
 app.listen(3000, () => console.log("Server running on port 3000"));
