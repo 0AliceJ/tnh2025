@@ -33,7 +33,7 @@ window.onload = displayAllQuotes;
 document.getElementById("add-quote-form").addEventListener("submit", function(e) {
     e.preventDefault();
     const quoteText = document.getElementById("new-quote").value;
-    fetch("/quotes", {
+    fetch("http://localhost:3000/quotes", {
         method: "POST",
         headers: { "Content-Type": "application/json"},
         body: JSON.stringify({text: quoteText})
