@@ -21,6 +21,17 @@ blockquote {
     border-left: #ccc 2px solid ;
     padding: 0.5em 1em;
 }
+
+.quote-row {
+    padding: 0.5em;
+
+}
+.quote-block {
+    margin: 0.75em;
+    border-left: #ccc 2px solid ;
+    padding: 0.5em 1em;
+}
+
 button {
     background-color: #ddd;
     color: black;

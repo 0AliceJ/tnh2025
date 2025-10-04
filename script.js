@@ -18,11 +18,25 @@ function displayAllQuotes() {
     .then(response => response.json())
     .then(data => {
         const container = document.getElementById("all-quotes");
-        container.innerHTML = ""; //Clear previous quotes(??? what???)
+        container.innerHTML = ""; //Clear previous quotes displayed on screen?
         data.forEach(q => {
-            const block = document.createElement("blockquote");
+            const wrapper = document.createElement("div");
+            wrapper.className = "quote-row";
+
+            const block = document.createElement("quote");
             block.innerText = q.text;
-            container.appendChild(block);
+            block.className = "quote-block";
+
+            const delBtn = document.createElement("button");
+            delBtn.innerText = "Delete";
+            delBtn.onclick = () => {
+                fetch(`http://localhost:3000/quotes/${q.id}`, {method: "DELETE"})
+                    .then(() => displayAllQuotes());
+            };
+
+            wrapper.appendChild(delBtn);
+            wrapper.appendChild(block);
+            container.appendChild(wrapper);
         });
     });
 }

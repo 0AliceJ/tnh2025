@@ -4,6 +4,7 @@ const app = express();
 const db = new sqlite3.Database("quotes.db");
 
 var cors = require("cors");
+const { rmSync } = require("fs");
 app.use(cors()); //Enable CORS for all routes
 app.use(express.json());
 
@@ -26,9 +27,12 @@ app.get("/quotes", (req, res) => {
     });
 });
 
-//filepath: /workspaces/tnh2025/server.js
-app.get("/test", (req, res) => {
-    res.json({message: "Test route works!"});
+//delete a quote
+app.delete("/quotes/:id", (req, res) => {
+    db.run("DELETE FROM quotes WHERE id = ?", [req.params.id], function(err) {
+        if (err) return res.status(500).send(err.message);
+        res.json({success: true});
+    });
 });
 
 app.listen(3000, () => console.log("Server running on port 3000"));
