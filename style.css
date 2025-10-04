@@ -1,0 +1,14 @@
+body {
+    font-family: Arial, sans-serif;
+}
+header {
+    background: #222;
+    color: #fff; /*text color*/
+    padding: 1em;
+    text-align: center;
+}
+header nav a { /*links in nav, in header*/
+    color: #fff;
+    margin: 0 1em;
+    text-decoration: none;
+}
