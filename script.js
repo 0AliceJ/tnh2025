@@ -1,14 +1,22 @@
-const quotes = [
-    "quote 5",
-    "quote 1",
-    "quote 2",
-    "quote 3",
-    "quote 4"
-]
-
+let quotes = [];
 let current = 0;
 
+function fetchQuotesForCycling() {
+    fetch("http://localhost:3000/quotes")
+        .then(response => response.json())
+        .then(data => {
+            quotes = data.map(q => q.text); //Store only text from displayAllQuotes
+            current = 0;
+            if (quotes.length > 0) {
+                document.getElementById("quote").innerText = quotes[current];
+            } else {
+                document.getElementById("quote").innerText = "No quotes to display.";
+            }
+        });
+}
+
 function changeQuote() {
+    if (quotes.length === 0) return;
     current = (current + 1) % quotes.length;
     document.getElementById("quote").innerText = quotes[current];
 }
@@ -31,7 +39,10 @@ function displayAllQuotes() {
             delBtn.innerText = "Delete";
             delBtn.onclick = () => {
                 fetch(`http://localhost:3000/quotes/${q.id}`, {method: "DELETE"})
-                    .then(() => displayAllQuotes());
+                    .then(() => {
+                        displayAllQuotes(); //Refresh list after deletion
+                        fetchQuotesForCycling(); //Refresh cycling quotes after deletion
+                    });
             };
 
             wrapper.appendChild(delBtn);
@@ -41,20 +52,24 @@ function displayAllQuotes() {
     });
 }
 
-//Call displayAllQuotes when page loads
-window.onload = displayAllQuotes;
+//Call when page loads
+window.onload = () => {
+    fetchQuotesForCycling();
+    displayAllQuotes();
+}
 
 document.getElementById("add-quote-form").addEventListener("submit", function(e) {
     e.preventDefault();
     const quoteText = document.getElementById("new-quote").value;
     fetch("http://localhost:3000/quotes", {
         method: "POST",
-        headers: { "Content-Type": "application/json"},
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify({text: quoteText})
     })
     .then(response => response.json())
     .then(data => {
         document.getElementById("new-quote").value = "";
         displayAllQuotes(); //Refresh the list
+        fetchQuotesForCycling(); //Refresh cycling quotes
     });
 });

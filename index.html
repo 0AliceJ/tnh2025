@@ -9,27 +9,39 @@
             <h1>Header Here</h1>
             <nav>
                 <a href="#">Home</a>
+                <a href="#to-do">To-Do-List</a>
                 <a href="#quotes">Quotes</a>
-                <a href="#quote-database">Quote Database</a>
             </nav>
         </header>
 
        
         <div class="main">
-            <h1 id="quotes">Quotes</h1>
+            <!--To-Do-List-->
+            <h1 id="to-do">To-Do List</h1>
 
-            <!--Changing quote box-->
-            <blockquote id="quote">Do you want an inspirational quote?</blockquote>
-            <button onclick="changeQuote()">Change Quote</button>
+            <!--Random item cycle-->
             
+
+            <!--Full to-do-list-->
+            <div id="to-do-list"></div>
+
+            <hr>
+
+            <h1 id="quotes">Quotes</h1>
+            <!--Changing quote box-->
+            <blockquote id="quote">[Quote Cycling Placeholder]</blockquote>
+            <button onclick="changeQuote()">Change Quote</button>
+            <hr>
             <!--input new quotes-->
             <form id="add-quote-form">
                 <input type="text" id="new-quote" placeholder="Enter a quote" required>
                 <button type="submit">Add Quote</button>
             </form>
+
+            <h1>Quote Database</h1>
+            <div id="all-quotes"></div>
         </div>
-        <h1 id="quote-database">Quote Database</h1>
-        <div id="all-quotes"></div>
+        
 
         <script src="script.js"></script>        
     </body>
