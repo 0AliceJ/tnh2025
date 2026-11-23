@@ -1,8 +1,7 @@
-# tnh2025
+# Quotes Database
 
-For Tech-nol-hack 2025 at Carleton
+**Quotes Database**: 
+Store your most inspiring quotes and remotivate yourself with your most important values.
+A prototype website to store your favourite and most memorable quotes and randomly cycle through them.
 
-## Ideas
-- a website
-- social media platform 
-- database to hold some info?
+For Tech-nol-hack 2025 hackathon at Carleton
